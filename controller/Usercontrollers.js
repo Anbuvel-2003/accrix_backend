@@ -1,5 +1,6 @@
 import User from "../models/usermodel.js";
 import jwt from "jsonwebtoken";
+import { sendEmail } from "../utils/testing.js";
 
 const registerUser = async (req, res) => {
   const {
@@ -102,4 +103,20 @@ const logoutUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, logoutUser };
+// email sender functionality : 
+const emailsender = async (req, res) => {
+  try {
+    console.log("checking");
+    
+    const { toemail, subject, html, text } = req.body;
+    console.log("emailsender functionality calling ....");
+    const info = await sendEmail(toemail, subject, text, html);
+    res.status(200).json({ message: "Email sent successfully", info });
+
+  } catch (error) {
+    console.log(error.message, "emailsender functionality");
+
+  }
+}
+
+export { registerUser, loginUser, logoutUser, emailsender };

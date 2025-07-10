@@ -6,7 +6,7 @@ import {
   getSingleLead,
   updateleads,
 } from "../controller/Leadcontrollers.js";
-import { loginUser, logoutUser, registerUser } from "../controller/Usercontrollers.js";
+import { emailsender, loginUser, logoutUser, registerUser } from "../controller/Usercontrollers.js";
 const router = express.Router();
 
 // Leads
@@ -22,5 +22,6 @@ router.post("/users/login", loginUser);
 router.post("/users/logout/:id", logoutUser);
 
 // router.post('/signup',signup);
+router.post("/emailsend", emailsender);
 
 export default router;
